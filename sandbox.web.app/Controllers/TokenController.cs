@@ -18,7 +18,7 @@ namespace sandbox.web.app.Controllers
             List<Token> tokenList = new List<Token>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44323/Token"))
+                using (var response = await httpClient.GetAsync("https://localhost:5001/Token"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     tokenList = JsonConvert.DeserializeObject<List<Token>>(apiResponse);
