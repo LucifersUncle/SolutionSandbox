@@ -17,7 +17,7 @@ namespace sandbox.web.api.Controllers
     {
         //// GET: TokenController
         [HttpGet]
-        public async Task<IEnumerable<Token>> Get()
+        public async Task<IEnumerable<Token>> GetTopHundred()
         {
             List<Token> tokenList = new List<Token>();
             using (var httpClient = new HttpClient())
