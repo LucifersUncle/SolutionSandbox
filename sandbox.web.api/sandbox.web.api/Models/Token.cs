@@ -11,9 +11,9 @@ namespace sandbox.web.api.Models
         public string Id { get; set; }
         public string Symbol { get; set; }
         [Required]
-        public string Name { get; set; }
-        public string Image { get; set; }
-        public double Current_Price { get; set; }
+        public string name { get; set; }
+        public string image { get; set; }
+        public double current_price { get; set; }
         public string MarketCap { get; set; }
         public int Market_Cap_Rank { get; set; }
     }
