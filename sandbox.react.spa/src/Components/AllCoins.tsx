@@ -5,6 +5,8 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import { Divider } from "@material-ui/core";
+import '../Styles/cointable.css';
 
 var CurrencyFormat = require('react-currency-format');
 
@@ -84,7 +86,7 @@ const Table = ({ columns, data }: any) => {
                     </tr>
                 ))}
             </tfoot> */}
-        </MaUTable>
+            </MaUTable>
     );
 };
 
@@ -143,7 +145,7 @@ export function AllCoins() {
         //         )}
         // </div>
 
-        <div className="App">
+        <div id="AllCoins" className="AllCoins">
             <Table columns={columns} data={allCoinInfo} />
         </div>
     );

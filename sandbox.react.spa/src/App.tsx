@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AllCoins } from './Components/AllCoins';
 import { Navbar } from './Components/Navbar';
+import { Home } from './Components/Home';
 import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Login';
@@ -11,6 +12,7 @@ function App() {
         <Router>
             <Navbar />
             <Routes>
+                <Route path='/' element={<Home/>}></Route>
                 <Route path='/allcoins' element={<AllCoins />}></Route>
                 <Route path='/login' element={<Login />}></Route>
 

@@ -23,7 +23,7 @@ export function Login() {
     }
 
     return (
-        <body className="text-center">
+        <body id="signinForm" className="text-center">
     
             <main className="form-signin">
             <form>
