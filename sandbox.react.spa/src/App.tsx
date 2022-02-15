@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AllCoins } from './AllCoins';
 import { Navbar } from './Navbar';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
