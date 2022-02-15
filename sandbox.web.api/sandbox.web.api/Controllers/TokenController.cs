@@ -31,18 +31,19 @@ namespace sandbox.web.api.Controllers
             }
         }
 
-        //public async Task<IEnumerable<Token>> GetById(string id)
-        //{
-        //    Token token = new Token();
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        using (var response = await httpClient.GetAsync("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"))
-        //        {
-        //            string apiResponse = await response.Content.ReadAsStringAsync();
-        //            token = JsonConvert.DeserializeObject<Token>(apiResponse);
-        //        }
-        //        return token;
-        //    }
-        //}
+        [HttpGet("{name}")]
+        public async Task<IEnumerable<Token>> GetByName(string name)
+        {
+            List<Token> token = new List<Token>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=" + $"{name}" + "&order=market_cap_desc&per_page=100&page=1&sparkline=false"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    token = JsonConvert.DeserializeObject<List<Token>>(apiResponse);
+                }
+                return token;
+            }
+        }
     }
 }

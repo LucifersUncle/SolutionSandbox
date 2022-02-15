@@ -8,13 +8,12 @@ namespace sandbox.web.api.Models
 {
     public class Token
     {
-        public string Id { get; set; }
-        public string Symbol { get; set; }
-        [Required]
+        public string id { get; set; }
+        public string symbol { get; set; }
         public string name { get; set; }
         public string image { get; set; }
         public double current_price { get; set; }
-        public string MarketCap { get; set; }
-        public int Market_Cap_Rank { get; set; }
+        public string marketCap { get; set; }
+        public int market_cap_rank { get; set; }
     }
 }

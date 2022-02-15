@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 
 export function AllCoins() {
+<<<<<<< HEAD
     // const url: string = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2C%20ethereum%2C%20tether&order=market_cap_desc&per_page=100&page=1&sparkline=false";
     const url: string = "https://localhost:5001/Token";
 
