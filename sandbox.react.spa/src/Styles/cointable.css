@@ -1,5 +1,8 @@
 #AllCoins {
-    padding-left: 35rem;
-    margin-top: 50%;
-    padding-top: 390rem;
+    margin-top: 380rem;
+}
+
+#cointable {
+    padding-top: inherit;
+    margin-top: 390rem;
 }

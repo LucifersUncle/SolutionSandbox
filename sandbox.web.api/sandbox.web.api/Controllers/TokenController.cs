@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using sandbox.web.api.Models;
 using System;
 using System.Collections.Generic;
@@ -22,9 +24,19 @@ namespace sandbox.web.api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Token> Get()
+        public IEnumerable<Token> GetAllTokens()
         {
-            return _tokenCollection.Find(t => t.current_price > 100.0).ToList();
+            return _tokenCollection.Find(t => t.current_price > 0).ToList();
+        }
+
+        [HttpGet("{name}")]
+        public Task<string> GetByName(string name)
+        {
+            Token token = new Token();
+
+            var filter = Builders<BsonDocument>.Filter.Eq("name", name);
+            var result = _tokenCollection.Find(filter.ToString().ToLower());
+            return (Task<string>)result;
         }
     }
 }

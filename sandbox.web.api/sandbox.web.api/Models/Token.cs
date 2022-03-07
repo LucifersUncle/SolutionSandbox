@@ -1,15 +1,15 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace sandbox.web.api.Models
 {
+    [BsonIgnoreExtraElements]
     public class Token
     {
         [BsonId]
+        public ObjectId _id { get; set; }
+        [BsonElement("id")]
         public string id { get; set; }
         [BsonElement("symbol")]
         public string symbol { get; set; }
@@ -20,7 +20,7 @@ namespace sandbox.web.api.Models
         [BsonElement("current_price")]
         public double current_price { get; set; }
         [BsonElement("market_cap")]
-        public string marketCap { get; set; }
+        public Int64 market_cap { get; set; }
         [BsonElement("market_cap_rank")]
         public int market_cap_rank { get; set; }
     }
