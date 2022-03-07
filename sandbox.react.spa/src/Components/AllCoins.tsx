@@ -1,11 +1,12 @@
 import React, { Component, useState, useEffect } from "react";
-import { useTable } from "react-table";
+import { useSortBy, useTable } from "react-table";
 import MaUTable from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Divider } from "@material-ui/core";
+import TextField from '@mui/material/TextField';
 import '../Styles/cointable.css';
 
 var CurrencyFormat = require('react-currency-format');
@@ -47,12 +48,14 @@ const Table = ({ columns, data }: any) => {
         headerGroups,
         // footerGroups,
         rows,
-        prepareRow
+        prepareRow,
     } = useTable({
         columns,
         data
         
-    });
+    },
+    useSortBy
+    );
 
     return (
         <MaUTable {...getTableProps()}>
@@ -60,7 +63,11 @@ const Table = ({ columns, data }: any) => {
                 {headerGroups.map(headerGroup => (
                     <TableRow {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <TableCell {...column.getHeaderProps()}>{column.render("Header")}</TableCell>
+                            <TableCell {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render("Header")}
+                                <span>
+                                    {column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}
+                                </span>
+                            </TableCell>
                         ))}
                     </TableRow>
                 ))}
@@ -92,13 +99,15 @@ const Table = ({ columns, data }: any) => {
 
 export function AllCoins() {
     // const url: string = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2C%20ethereum%2C%20tether&order=market_cap_desc&per_page=100&page=1&sparkline=false";
-    const url: string = "https://localhost:44323/Token";
+    const url: string = "https://localhost:5001/Token";
+    // const url: string = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
 
     // const [btcImage, setBtcImage] = useState(null);
     // const [name, setName] = useState(null);
     // const [price, setPrice] = useState(null);
 
     const [allCoinInfo, setAllCoinInfo] = useState<any[]>([]);
+    const [filterInput, setFilterInput] = useState("");
 
     useEffect(() => {
         fetch(url)
@@ -119,6 +128,11 @@ export function AllCoins() {
     if (allCoinInfo === null) {
         return <h1>Hi</h1>
     }
+
+    const handleFilterChange = (e: any) => {
+        const value = e.target.value || undefined;
+        setFilterInput(value);
+      };
 
 
     return (
@@ -145,8 +159,19 @@ export function AllCoins() {
         //         )}
         // </div>
 
+        <div>
+        
+
         <div id="AllCoins" className="AllCoins">
+            <TextField
+                id="name-search"
+                label="Search field"
+                type="search"
+                value={filterInput}
+                onChange={handleFilterChange}
+            />
             <Table columns={columns} data={allCoinInfo} />
+        </div>
         </div>
     );
 }
