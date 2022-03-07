@@ -6,7 +6,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Divider } from "@material-ui/core";
-import TextField from '@mui/material/TextField';
 import '../Styles/cointable.css';
 
 var CurrencyFormat = require('react-currency-format');
@@ -120,12 +119,12 @@ export function AllCoins() {
             // setPrice(data[0].current_price);
             setAllCoinInfo(data);
             });
-        const interval = setInterval(() => {
-            fetch(url)
-            .then(resp => resp.json())
-            .then(data => setAllCoinInfo(data));
-        }, 10000);
-        return () => clearInterval(interval);
+        //const interval = setInterval(() => {
+        //    fetch(url)
+        //    .then(resp => resp.json())
+        //    .then(data => setAllCoinInfo(data));
+        //}, 10000);
+        //return () => clearInterval(interval);
     }, []);
     if (allCoinInfo === null) {
         return <h1>Hi</h1>

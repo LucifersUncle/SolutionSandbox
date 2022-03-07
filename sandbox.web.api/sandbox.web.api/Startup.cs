@@ -7,9 +7,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using sandbox.web.api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,19 @@ namespace sandbox.web.api
                 var uri = s.GetRequiredService<IConfiguration>()["ConnectionString"];
                 return new MongoClient(uri);
             });
+
+            #region Alternate Way of Interacting with DB
+            /// <summary>
+            /// Class <DocumentService> - service for handling MongoDB generec interactions
+            /// https://developer.okta.com/blog/2020/01/02/mongodb-csharp-aspnet-datastore
+            services.Configure<DatabaseSettings>(
+               Configuration.GetSection(nameof(DatabaseSettings)));
+
+            services.AddSingleton<DatabaseSettings>(sp =>
+            sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+            /// </summary>
+
+            #endregion
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
