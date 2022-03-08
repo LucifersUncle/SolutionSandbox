@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace sandbox.web.api.Repositories
+namespace sandbox.web.api.REST.Repositories
 {
     public interface ITokenRepository
     {
